@@ -1,10 +1,10 @@
 ---
 name: 实体类结构对比
-description: 将项目中实体类定义与 `dev-manager` 中的数据库表结构进行对比，找出有差异的实体类，并生成差异报告。
+description: 将项目中实体类定义与全栈项目管理目录中的数据库表结构进行对比，找出有差异的实体类，并生成差异报告。
 ---
 
 ## 配置读取
-- 从  `.claude/settings.local.json` 中读取 `devManagerPath`（dev-manager 仓库根目录）。
+- 从项目根目录下的 `setting.local.json` 中读取 `devManagerPath`（AI 全栈开发项目管理目录的根路径）。
 
 ## 对比范围
 - 如果用户指定了一个或多个实体类名（如 `UserEntity`），只对比这些类；否则扫描项目下所有实体类。

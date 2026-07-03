@@ -10,7 +10,7 @@
 
 /
 ├── README.md                    # 项目简介，包含当前版本、项目背景等信息
-├── setting.json                 # 个人设置，每个开发者单独进行配置
+├── setting.local.json           # 个人设置，每个开发者单独进行配置
 ├── requirements/                # 需求管理目录
 │   ├── docs/                    # 通用需求文档目录，存放PRD、原型图、质量管理等文档
 │   ├── module/                  # 模块级需求目录

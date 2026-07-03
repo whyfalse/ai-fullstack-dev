@@ -6,6 +6,6 @@
 |------|------|------|
 | `code` | integer(int32) |  |
 | `message` | string |  |
-| `data` | [User](./schemas/User.md) |  |
+| `data` | [User](./User.md) |  |
 | `timestamp` | string(date-time) |  |
 

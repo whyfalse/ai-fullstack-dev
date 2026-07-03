@@ -1,5 +1,5 @@
 
-CREATE TABLE `user`  (
+CREATE TABLE `users`  (
   `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '用户ID，主键',
   `user_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '用户名，唯一',
   `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '邮箱，唯一',
@@ -10,7 +10,7 @@ CREATE TABLE `user`  (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   PRIMARY KEY (`id`) USING BTREE,
-  UNIQUE INDEX `uk_username`(`user_name`) USING BTREE,
+  UNIQUE INDEX `uk_user_name`(`user_name`) USING BTREE,
   UNIQUE INDEX `uk_email`(`email`) USING BTREE,
   INDEX `idx_status`(`status`) USING BTREE,
   INDEX `idx_created_at`(`created_at`) USING BTREE
