@@ -4,7 +4,8 @@
       "Bash(sed -n '35,39p' \"/d/ai-fullstack-dev/需求分析师Agent.md\")",
       "Bash(sed -n '15,24p' \"/d/ai-fullstack-dev/前端开发者Agent.md\")",
       "Bash(sed -n '17,26p' \"/d/ai-fullstack-dev/后端开发者Agent.md\")",
-      "Bash(sed -n '29,30p' \"/d/ai-fullstack-dev/后端开发者Agent.md\")"
+      "Bash(sed -n '29,30p' \"/d/ai-fullstack-dev/后端开发者Agent.md\")",
+      "Bash(python)"
     ]
   }
 }
