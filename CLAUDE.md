@@ -16,7 +16,7 @@ A critical distinction future Claude instances must internalize:
   - `SKILL.md` — entry point; defines the init flow.
   - `需求分析师Agent.md`, `架构师Agent.md`, `前端开发者Agent.md`, `后端开发者Agent.md` — Agent definitions installed into the new project (the dev-manager space gets 需求分析师 + 架构师; frontend space gets 前端开发者; backend space gets 后端开发者).
   - `dev-manager-ai-space/`, `frontend-ai-space/`, `backend-ai-space/` — each contains `rules/` and `skills/` that get copied into the corresponding space of the new project.
-  - `appendix/` — copied verbatim into the new project's `appendix/`.
+  - `templates/` — copied verbatim into the new project's `templates/`.
   - `README.md` — documents the workflow for humans; not used programmatically.
 
 - **Files that exist only locally for this repo's own Claude session:**
@@ -28,7 +28,7 @@ When editing anything under the `*-ai-space/` folders or the `*Agent.md` files, 
 
 A scaffolded project is split across three directories (the dev-manager space plus the user's existing frontend and backend code repos):
 
-1. **Dev-manager space** (the project root created by the skill): holds requirements, architecture, contracts, dev-tasks, appendix. Houses the 需求分析师 and 架构师 agents. Owns the canonical API and DB contracts.
+1. **Dev-manager space** (the project root created by the skill): holds requirements, architecture, contracts, dev-tasks, templates. Houses the 需求分析师 and 架构师 agents. Owns the canonical API and DB contracts.
 2. **Frontend space** (user's frontend repo): houses the 前端开发者 agent. Reads contracts/tasks from the dev-manager space via `setting.local.json` → `devManagerPath`.
 3. **Backend space** (user's backend repo): houses the 后端开发者 agent. Same pattern, plus uses `db-structure-compare` to diff entity classes against the dev-manager DB contracts.
 
@@ -52,7 +52,7 @@ Key invariants enforced by the templates:
 
 - Skills live as `<skill-name>/SKILL.md` under each `*-ai-space/skills/`. The frontmatter `name` and `description` are how agents discover and invoke them — keep them in sync with the folder name.
 - Agent files use the standard Claude Code agent frontmatter (`name`, `description`, `tools`, `model`, `color`, `memory`, `skills`). The `skills:` list on an agent must match skill folder names in that agent's space.
-- The `appendix/api-contract-template/` and `appendix/database-contract-template/` are the **strict** format examples for contract files. `architectural-design` SKILL.md explicitly forbids adding extra fields beyond what the templates show — when editing templates, preserve the exact structure.
+- The `templates/api-contract-template/` and `templates/database-contract-template/` are the **strict** format examples for contract files. `architectural-design` SKILL.md explicitly forbids adding extra fields beyond what the templates show — when editing templates, preserve the exact structure.
 - Directory names in this repo are English (`api-contract-template/`, `database-contract-template/`, `*-ai-space/`); file names may use Chinese (`需求分析师Agent.md`, `架构师Agent.md`, `项目README模板.md`). On Windows/bash use UTF-8 paths.
 
 ## Common operations

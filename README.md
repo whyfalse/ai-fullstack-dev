@@ -75,7 +75,7 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 ├── dev-tasks/                   # 开发任务拆分目录
 │   ├── frontend.md              # 前端开发任务清单
 │   └── backend.md               # 后端开发任务清单
-└── appendix/                    # 附录目录（模板、参考资料）
+└── templates/                   # 模板目录（模板、参考资料）
     ├── api-contract-template/
     ├── database-contract-template/
     └── 开发任务看板模板.md
@@ -114,21 +114,19 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 
 ## 🚀 快速开始
 
-请将该仓库作为技能放入到 AI 编程助手的技能列表中。
-
 ### ✅ 前置条件
 
-- AI 编码助手（如 Claude Code）已安装并配置
-- 创建一个项目管理目录，该目录将作为AI全栈开发项目的根目录
-- 前端项目代码目录
-- 后端项目代码目录
+- 已安装 Claude Code（或兼容 Claude Code Skill 机制的 AI 编码助手）
+- 已将本仓库作为 Skill 安装到助手可用技能列表中（克隆到 `~/.claude/skills/ai-fullstack-dev/`，或通过插件机制安装）
+- 已创建一个空目录作为 AI 全栈开发项目的根目录（即 dev-manager 空间）
+- 前端项目代码目录与后端项目代码目录已就绪（可空仓库，但路径需确定）
 
 ### 🛠️ 初始化项目
 
-1. 在你的项目管理目录下调用 `ai-fullstack-dev` Skill 初始化项目
-2. 按提示输入前端项目路径 `$frontendProjPath` 和后端项目路径 `$backendProjPath`
-3. 系统将自动创建目录结构、AI Agent 配置、Rules 和 Skills（其中 `task-driven-dev` 为前后端共享技能，由仓库 `common-ai-space/skills/` 复制到两个空间并替换对应任务清单文件名占位符）
-4. 确认生成 `setting.local.json` 配置文件内容正确（结构参见 `appendix/开发管理设置模板.md`）
+1. 在项目管理目录下调用 `ai-fullstack-dev` Skill 启动初始化
+2. 按提示确认当前目录作为项目根目录，并输入前端项目路径 `$frontendProjPath` 和后端项目路径 `$backendProjPath`
+3. 系统将自动创建目录结构、AI Agent 配置、Rules 和 Skills，并在前后端空间间复制共享技能 `task-driven-dev`
+4. 检查项目根目录与前后端空间下生成的 `setting.local.json` 是否正确（结构参见 `templates/开发管理设置模板.md`）—— 三空间之间的路径互引全靠此文件，配置错误会导致 Agent 找不到契约或任务
 
 ### 💻 开始开发
 
@@ -138,22 +136,28 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 读取 @requirements/docs/README.md 并输出模块需求文档
 ```
 
+   产出位置：`requirements/module/<模块名称>/README.md`
+
 2. 调用 **架构师** Agent，基于需求进行架构设计和任务分配。例如：
 
 ``` prompt
- 读取所有模块需求文档，并进行架构设计
+读取所有模块需求文档，并进行架构设计
 ```
 
-或者：
+或者只针对单个模块：
 
 ``` prompt
-对 登陆鉴权 需求模块进行架构设计
+对 登录鉴权 需求模块进行架构设计
 ```
+
+   产出位置：`architecture/module/<模块名称>/`（功能文档 + 契约 + 测试用例）与 `dev-tasks/`（任务清单）
 
 3. 分别调用 **前端开发者** 和 **后端开发者** Agent，按任务清单并行开发。例如：
 
 ``` prompt
-开始 登陆鉴权-20260414-0 任务的开发
+开始 登录鉴权-20260708-0 任务的开发
 ```
 
-4. 开发过程中可通过任务看板追踪进度
+   产出位置：前端任务落到 `$frontendProjPath` 对应代码，后端任务落到 `$backendProjPath` 对应代码；任务状态同步写入 `dev-tasks/frontend.md` 或 `dev-tasks/backend.md`
+
+4. 开发过程中通过 `dev-tasks/frontend.md` 与 `dev-tasks/backend.md` 任务看板追踪进度（状态流转：`todo` → `in-progress` → `wait-test` → `done`）

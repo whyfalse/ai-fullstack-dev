@@ -56,4 +56,4 @@
 ├── dev-tasks/                   # 开发任务拆分目录
 │   ├── frontend.md              # 前端开发任务清单
 │   └── backend.md               # 后端开发任务清单
-└── appendix/                    # 附录目录（补充文档、参考资料等）
+└── templates/                   # 模板目录（补充文档、参考资料等）
