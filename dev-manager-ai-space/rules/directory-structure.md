@@ -17,7 +17,9 @@
 ├── architecture/                # 架构设计目录
 │   ├── README.md                # 架构设计说明，包含架构设计思维、前后端技术选型等内容
 │   ├── module/                  # 分析需求后拆分出的程序模块
-│   │   ├── catalog.md          # 程序功能模块目录
+│   │   ├── catalog.md          # 程序功能模块目录（含状态列：active/deprecated/archived）
+│   │   ├── _archived/          # 整体废弃的模块归档目录（原样保留模块文件夹）
+│   │   │   └── <模块名称>/      # 整体废弃的模块，从 module/<模块名称>/ 移入
 │   │   ├── <模块名称>/          # 单个程序模块
 │   │   │   ├── frontend.md      # 前端功能文档
 │   │   │   ├── backend.md       # 后端功能文档
@@ -28,8 +30,8 @@
 │   │   └── ...
 │   ├── contracts/               # 架构契约
 │   │   ├── apis/                # API接口契约目录
-│   │   │   ├── catalog.md       # API接口目录索引
-│   │   │   ├── interfaces/      # 接口定义目录
+│   │   │   ├── catalog.md       # API接口目录索引（含状态列：active/deprecated/archived）
+│   │   │   ├── interfaces/      # 接口定义目录（废弃接口原地保留，顶部加废弃横幅，不移动）
 │   │   │   │   ├── <接口名称>.md # 单个接口契约文档（含请求/响应定义）
 │   │   │   │   └── ...
 │   │   │   └── params/          # 出入参定义
@@ -38,6 +40,9 @@
 │   │   └── database/            # 数据库设计
 │   │       ├── catalog.md       # 数据库设计目录索引
 │   │       ├── <表名>.json      # 表/集合 schema 中立描述（JSON，按目标数据库映射为 DDL 或 schema 验证）
+│   │       ├── change-log/      # 数据库变更日志（按表名分文件，倒序记录该表所有 schema 变更）
+│   │       │   ├── <表名>.md    # 单表变更历史，与模块 change-log 通过 dev-task ID 双向引用
+│   │       │   └── ...
 │   │       └── ...
 │   └── ...
 ├── dev-tasks/                   # 开发任务拆分目录

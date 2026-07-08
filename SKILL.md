@@ -10,6 +10,7 @@ description: 创建一个AI全栈开发项目
 - 让用户确认是否使用当前的目录作为项目目录。
 - 读取 `./dev-manager-ai-space/rules/directory-structure.md`，按照文件中的目录结构创建目录和文件，注意：只创建确定的目录和文件，不要创建多余的目录和文件。
 - 将 `./appendix/` 下的文件复制到项目的 `appendix/` 下。
+- 将 `./appendix/项目README模板.md` 复制到项目根目录并改名为 `README.md`，作为项目根 README；初始化时保留模板中的占位文本（如"这里是项目概述"），由用户后续填写。
 - 询问用户前端项目的地址 `$frontendProjPath`。
 - 询问用户后端项目的地址 `$backendProjPath`。
 - 创建项目管理目录下的 `setting.local.json` 文件，结构参见 `appendix/开发管理设置模板.md` 第 1 节，将 `projectPath` 占位符分别替换为 `$frontendProjPath` 与 `$backendProjPath`。

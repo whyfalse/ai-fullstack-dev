@@ -12,9 +12,8 @@
 | 编号 | 位置 | 问题 | 建议方案 | 优先级 | 状态 |
 |------|------|------|----------|--------|------|
 | W-3.1 | 任务看板状态 `wait-test` / `failed` / `done`（`appendix/开发任务看板模板.md`） | 没有测试 Agent 推动状态流转，`test.md` 由架构师生成但谁执行/标记 done 不明 | 补测试 Agent，或明确由人工/外部 CI 流程触发；更新任务状态机说明 | P1 | 待处理 |
-| W-3.2 | `dev-manager-ai-space/skills/architectural-design/SKILL.md` | 未覆盖"删除/废弃"流程：需求分析师有删除模块分支（归档 `_archived/`），但架构师未说明如何处理废弃的 API 接口、表、frontend.md/backend.md | 补充废弃流程：归档目录、catalog 标注、change-log 记录 | P1 | 待处理 |
+| W-3.2 | `dev-manager-ai-space/skills/architectural-design/SKILL.md` | 未覆盖"删除/废弃"流程：需求分析师有删除模块分支（归档 `_archived/`），但架构师未说明如何处理废弃的 API 接口、表、frontend.md/backend.md | 补充废弃流程：归档目录、catalog 标注、change-log 记录 | P1 | 已完成（数据库变更日志：`/architecture/contracts/database/change-log/<表名>.md` 含"废弃表"类型；API 接口与数据模型：`apis/catalog.md` 加状态列 + 文件顶部废弃横幅，原地保留不移动；frontend.md/backend.md 部分废弃：`## 已废弃` 小节；模块整体废弃：移至 `module/_archived/<模块名称>/`，catalog 状态改 `archived`；所有废弃动作在模块 change-log 记"废弃内容"小节，dev-task ID 双向引用） |
 | W-3.3 | `需求分析师Agent.md` 步骤 6"修改" | 只更新需求 `README.md`，未说明架构师侧 `frontend.md/backend.md/test.md` 如何同步废弃内容 | 在架构师流程中明确"修改"场景的下游文档同步步骤 | P1 | 待处理 |
-| W-3.4 | `后端开发者Agent.md` "对话式开发" vs `前端开发者Agent.md` | 前端有明确契约检查清单，后端只写"直接根据用户当前的提示词进行开发"，描述不对称 | 后端镜像前端的契约检查步骤（API 契约 + DB 契约 + 模块 backend.md） | P1 | 待处理 |
 
 ---
 
@@ -22,7 +21,7 @@
 
 | 编号 | 位置 | 问题 | 建议方案 | 优先级 | 状态 |
 |------|------|------|----------|--------|------|
-| M-4.1 | `appendix/README.md` | 标题为"项目概述"+ 版本表 + 目录结构，但作为附录目录的 README 不应承载项目根级信息；看起来是"项目根 README 模板"被错放 | 拆分：项目根 README 模板放到合适位置；`appendix/README.md` 只描述附录用途 | P1 | 待处理 |
+| M-4.1 | `appendix/README.md` | 标题为"项目概述"+ 版本表 + 目录结构，但作为附录目录的 README 不应承载项目根级信息；看起来是"项目根 README 模板"被错放 | 拆分：项目根 README 模板放到合适位置；`appendix/README.md` 只描述附录用途 | P1 | 已完成（原内容迁移为 `appendix/项目README模板.md`，作为项目根 `README.md` 的模板；`appendix/README.md` 重写为附录目录说明，列出各模板用途与使用约定；`SKILL.md` 增加初始化步骤：将 `项目README模板.md` 复制到项目根并改名为 `README.md`） |
 | M-4.2 | `appendix/开发任务看板模板.md` | 规定"新任务统一为 `todo`"，但示例表格里却有一条 `in-progress`（"登陆鉴权-20260518-0"） | 模板示例统一为初始 `todo` 状态 | P1 | 待处理 |
 
 ---
@@ -31,9 +30,8 @@
 
 | 编号 | 位置 | 问题 | 建议方案 | 优先级 | 状态 |
 |------|------|------|----------|--------|------|
-| S-5.1 | `SKILL.md` | 未说明目标目录已存在 `appendix/`、`requirements/`、`setting.local.json` 时的冲突处理（覆盖/跳过/合并） | 明确冲突策略：默认跳过已存在文件并提示，`--force` 才覆盖 | P1 | 待处理 |
 | S-5.2 | `SKILL.md:28-29, 32-33, 42-43` | "按照 AI 工具的规则，复制 rules/skills 文件夹下的内容" 含糊 | 明确目标工具目录（如 Claude Code 的 `.claude/agents/`、`.claude/skills/`、`.claude/rules/`），或抽象为可配置的目标路径 | P1 | 待处理 |
-| S-5.3 | `SKILL.md` | 缺少 frontmatter（`name`/`description`） | 补充自描述 frontmatter | P2 | 待处理 |
+
 
 ---
 
@@ -42,7 +40,6 @@
 | 编号 | 位置 | 问题 | 建议方案 | 优先级 | 状态 |
 |------|------|------|----------|--------|------|
 | N-6.1 | 目录命名 | 中英文混用：`架构师思维/`、`接口契约模板/`、`数据库契约模板/` 是中文，`*-ai-space/` 是英文 | 统一为英文目录名 + 中文文件名，或全英文；避免 CI/Windows 编码风险 | P2 | 待处理 |
-| N-6.2 | 仓库根 | 无 `.gitignore`，`.claude/settings.local.json`（个人权限）入库 | 新增 `.gitignore` 忽略 `.claude/settings.local.json` 等个人配置 | P2 | 已完成 |
 
 ---
 

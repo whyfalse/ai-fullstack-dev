@@ -45,6 +45,7 @@ Key invariants enforced by the templates:
 - **Contract-first**: 架构师 writes `architecture/contracts/apis/` and `architecture/contracts/database/` **before** frontend/backend `.md` files. Developers must not invent or modify contracts — they flag violations and pause for confirmation.
 - **DB independence**: DB schema is modeled on business entities, not API response shapes. API responses are pruned, not raw table dumps. Frontend and backend never share an entity class.
 - **Change-log binding**: every module change produces a `change-log/<YYYYMMDD>-<seq>.md` in both `requirements/module/<m>/` and `architecture/module/<m>/`. The dev-task ID is `<模块名称>-<YYYYMMDD>-<seq>`, matching the architecture change-log filename exactly so a task is always traceable to its design change.
+- **DB change-log binding**: any schema change (new/alter/drop table, field, index, constraint) appends an entry to `/architecture/contracts/database/change-log/<表名>.md` — one file per table, reverse-chronological. The entry and the module change-log cross-reference each other via the same dev-task ID. This gives every table a single queryable evolution history independent of which module touched it.
 - **Task granularity**: 架构师 creates one frontend task + one backend task per module change (not per endpoint/page). Implementation-level breakdown happens inside each developer agent's flow.
 
 ## Skill conventions (when editing templates)
