@@ -28,3 +28,5 @@ description: 创建一个AI全栈开发项目
 - 在后端项目空间下创建 AI rules，按照 AI 工具的规则，复制 [rules 文件夹](./backend-ai-space/rules/) 下的内容。
 - 在后端项目空间下创建 AI skills，按照 AI 工具的规则，复制 [skills 文件夹](./backend-ai-space/skills/) 下的内容；再将 [公共 skills 文件夹](./common-ai-space/skills/) 下的 `task-driven-dev` 复制到后端项目空间，复制时将文件中的 `{{taskFile}}` 占位符全部替换为 `backend.md`。
 - 在后端项目根目录下创建 `setting.local.json`，记录全栈项目管理目录的根路径（即当前项目目录的绝对路径），结构参见 `templates/开发管理设置模板.md` 第 2 节。
+
+- 提示用户输入前后端的技术栈，可以直接输入，也可以直接从前后端的项目空间下自动读取，然后记录到项目管理目录下的 `architecture/README.md`中。
