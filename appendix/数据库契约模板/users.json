@@ -1,0 +1,20 @@
+{
+  "$comment": "用户表/集合 schema 模板（数据库中立描述，由开发者按目标数据库类型映射为具体 DDL 或 schema 验证）",
+  "name": "users",
+  "comment": "用户表",
+  "fields": [
+    { "name": "id",            "type": "bigint",   "primaryKey": true, "autoIncrement": true, "nullable": false, "comment": "用户ID，主键" },
+    { "name": "user_name",     "type": "varchar",  "length": 50,  "unique": true,  "nullable": false, "comment": "用户名，唯一" },
+    { "name": "email",         "type": "varchar",  "length": 100, "unique": true,  "nullable": false, "comment": "邮箱，唯一" },
+    { "name": "password_hash", "type": "char",     "length": 60,  "nullable": false, "comment": "密码哈希（如 bcrypt）" },
+    { "name": "avatar_url",    "type": "varchar",  "length": 255, "nullable": true,  "comment": "头像URL" },
+    { "name": "status",        "type": "smallint", "nullable": false, "default": 1, "comment": "状态：0禁用，1正常" },
+    { "name": "last_login_at", "type": "timestamp","nullable": true,  "comment": "最后登录时间" },
+    { "name": "created_at",    "type": "timestamp","nullable": false, "default": "CURRENT_TIMESTAMP", "comment": "创建时间" },
+    { "name": "updated_at",    "type": "timestamp","nullable": false, "default": "CURRENT_TIMESTAMP", "comment": "更新时间（如需自动更新，由应用层或触发器维护）" }
+  ],
+  "indexes": [
+    { "name": "idx_users_status",     "fields": ["status"] },
+    { "name": "idx_users_created_at", "fields": ["created_at"] }
+  ]
+}

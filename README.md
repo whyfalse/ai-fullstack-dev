@@ -2,6 +2,7 @@
 
 ## 简介
 
+**本项目属于一个AI技能，用于快速创建一个AI全栈开发项目。**
 AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈开发框架**。它通过定义需求分析师、架构师、前端开发者、后端开发者等 AI Agent 角色，结合标准化的 Rules、Skills 和模板，形成一套从需求到交付的结构化开发方法论。
 
 **核心理念**：需求分析 → 架构设计（契约优先）→ 任务分配 → 前后端并行开发
@@ -58,12 +59,11 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 │       │   └── params/          # 出入参定义
 │       └── database/            # 数据库设计
 │           ├── catalog.md       # 数据库设计目录索引
-│           └── *.sql            # 建表SQL脚本
+│           └── *.json           # 表/集合 schema 中立描述（JSON，按目标数据库映射为 DDL 或 schema 验证）
 ├── dev-tasks/                   # 开发任务拆分目录
 │   ├── frontend.md              # 前端开发任务清单
 │   └── backend.md               # 后端开发任务清单
 └── appendix/                    # 附录目录（模板、参考资料）
-    ├── 架构师思维/
     ├── 接口契约模板/
     ├── 数据库契约模板/
     └── 开发任务看板模板.md
@@ -115,19 +115,8 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 
 1. 在你的项目管理目录下调用 `ai-fullstack-dev` Skill 初始化项目
 2. 按提示输入前端项目路径 `$frontendProjPath` 和后端项目路径 `$backendProjPath`
-3. 系统将自动创建目录结构、AI Agent 配置、Rules 和 Skills
-4. 确认生成 `setting.local.json` 配置文件内容正确：
-
-```json
-{
-    "frontend": {
-        "projectPath": "<你的前端项目路径>"
-    },
-    "backend": {
-        "projectPath": "<你的后端项目路径>"
-    }
-}
-```
+3. 系统将自动创建目录结构、AI Agent 配置、Rules 和 Skills（其中 `task-driven-dev` 为前后端共享技能，由仓库 `common-ai-space/skills/` 复制到两个空间并替换对应任务清单文件名占位符）
+4. 确认生成 `setting.local.json` 配置文件内容正确（结构参见 `appendix/开发管理设置模板.md`）
 
 ### 开始开发
 
