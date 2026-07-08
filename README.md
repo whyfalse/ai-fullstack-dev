@@ -76,8 +76,8 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 │   ├── frontend.md              # 前端开发任务清单
 │   └── backend.md               # 后端开发任务清单
 └── appendix/                    # 附录目录（模板、参考资料）
-    ├── 接口契约模板/
-    ├── 数据库契约模板/
+    ├── api-contract-template/
+    ├── database-contract-template/
     └── 开发任务看板模板.md
 ```
 

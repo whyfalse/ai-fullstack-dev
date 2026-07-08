@@ -52,8 +52,8 @@ Key invariants enforced by the templates:
 
 - Skills live as `<skill-name>/SKILL.md` under each `*-ai-space/skills/`. The frontmatter `name` and `description` are how agents discover and invoke them — keep them in sync with the folder name.
 - Agent files use the standard Claude Code agent frontmatter (`name`, `description`, `tools`, `model`, `color`, `memory`, `skills`). The `skills:` list on an agent must match skill folder names in that agent's space.
-- The `appendix/接口契约模板/` and `appendix/数据库契约模板/` are the **strict** format examples for contract files. `architectural-design` SKILL.md explicitly forbids adding extra fields beyond what the templates show — when editing templates, preserve the exact structure.
-- Filenames in this repo use Chinese characters (`需求分析师Agent.md`, `架构师思维/`, `接口契约模板/`). On Windows/bash use UTF-8 paths; do not transliterate.
+- The `appendix/api-contract-template/` and `appendix/database-contract-template/` are the **strict** format examples for contract files. `architectural-design` SKILL.md explicitly forbids adding extra fields beyond what the templates show — when editing templates, preserve the exact structure.
+- Directory names in this repo are English (`api-contract-template/`, `database-contract-template/`, `*-ai-space/`); file names may use Chinese (`需求分析师Agent.md`, `架构师Agent.md`, `项目README模板.md`). On Windows/bash use UTF-8 paths.
 
 ## Common operations
 
