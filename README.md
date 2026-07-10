@@ -116,16 +116,16 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 
 ### ✅ 前置条件
 
-- 已安装 Claude Code（或兼容 Claude Code Skill 机制的 AI 编码助手）
-- 已将本仓库作为 Skill 安装到助手可用技能列表中（克隆到 `~/.claude/skills/ai-fullstack-dev/`，或通过插件机制安装）
+- 已安装支持自定义 Agent / Skill（或等价机制，如 Rules、Prompt 文件）的 AI 编码助手，如 Claude Code、Cursor、Windsurf、Cline 等
+- 已将本仓库作为可用 Skill 接入助手（接入方式按所用工具而定：Claude Code 可克隆到 `~/.claude/skills/ai-fullstack-dev/` 或通过插件安装；Cursor/Windsurf/Cline 等按各自的自定义规则/Agent 接入方式配置）
 - 已创建一个空目录作为 AI 全栈开发项目的根目录（即 dev-manager 空间）
 - 前端项目代码目录与后端项目代码目录已就绪（可空仓库，但路径需确定）
 
 ### 🛠️ 初始化项目
 
 1. 在项目管理目录下调用 `ai-fullstack-dev` Skill 启动初始化
-2. 按提示确认当前目录作为项目根目录，并输入前端项目路径 `$frontendProjPath` 和后端项目路径 `$backendProjPath`
-3. 系统将自动创建目录结构、AI Agent 配置、Rules 和 Skills，并在前后端空间间复制共享技能 `task-driven-dev`
+2. 按提示确认当前目录作为项目根目录，输入前端项目路径 `$frontendProjPath` 和后端项目路径 `$backendProjPath`，并选择新项目所使用的 AI 工具
+3. 系统将按所选 AI 工具的约定动态生成对应的 Agent 配置、Rules 与 Skills，并在前后端空间间复制共享技能 `task-driven-dev`
 4. 检查项目根目录与前后端空间下生成的 `setting.local.json` 是否正确（结构参见 `templates/开发管理设置模板.md`）—— 三空间之间的路径互引全靠此文件，配置错误会导致 Agent 找不到契约或任务
 
 ### 💻 开始开发

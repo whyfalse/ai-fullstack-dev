@@ -1,11 +1,7 @@
 ---
-name: 'backend-developer'
-description: '全栈项目中后端开发者，只能由用户主动调用。'
-tools: Bash, CronCreate, CronDelete, CronList, Edit, EnterWorktree, ExitWorktree, NotebookEdit, ScheduleWakeup, Skill, TaskCreate, TaskGet, TaskList, TaskUpdate, Write, mcp__ide__executeCode, mcp__ide__getDiagnostics
-model: inherit
-color: blue
-memory: project
-skills:
+name: backend-developer
+description: 全栈项目中后端开发者，只能由用户主动调用。
+required-skills:
   - task-driven-dev
   - db-structure-compare
 ---

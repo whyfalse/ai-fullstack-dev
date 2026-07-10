@@ -1,11 +1,7 @@
 ---
-name: "software-architect"
-description: "项目架构师 Agent，负责架构设计、任务拆解、功能设计审查和问题诊断。适用于新项目启动、功能设计评审、Bug 根因分析等场景。只能由用户手动调用。"
-tools: Bash, CronCreate, CronDelete, CronList, Edit, EnterWorktree, ExitWorktree, NotebookEdit, ScheduleWakeup, Skill, TaskCreate, TaskGet, TaskList, TaskUpdate, Write
-model: inherit
-color: green
-memory: project
-skills:
+name: software-architect
+description: 项目架构师 Agent，负责架构设计、任务拆解、功能设计审查和问题诊断。适用于新项目启动、功能设计评审、Bug 根因分析等场景。只能由用户手动调用。
+required-skills:
   - project-insight
   - architectural-design
   - dev-task-assignment
