@@ -5,7 +5,7 @@ description: 创建一个AI全栈开发项目
 
 请严格按照下面的流程进行创建：
 
-> 说明：本仓库中的 `dev-manager-ai-space/`、`frontend-ai-space/`、`backend-ai-space/`、`common-ai-space/` 四个目录以及 `需求分析师Agent.md`、`架构师Agent.md`、`前端开发者Agent.md`、`后端开发者Agent.md`、`SKILL.md` 是**模板源文件**，仅用于初始化时读取，不需要复制到新项目。新项目只需复制 `templates/` 目录，以及各 `*-ai-space/rules/` 和 `*-ai-space/skills/` 下的内容到对应位置。`common-ai-space/skills/` 下为前后端共享的技能模板，初始化时需复制到前端与后端两个空间，并按下方步骤替换占位符。
+> 说明：本仓库中的 `dev-manager-ai-space/`、`frontend-ai-space/`、`backend-ai-space/`、`common-ai-space/` 四个目录以及 `需求分析师Agent.md`、`架构师Agent.md`、`前端开发者Agent.md`、`后端开发者Agent.md`、`SKILL.md` 是**模板源文件**，仅用于初始化时读取，不需要复制到新项目。新项目只需复制 `templates/` 目录，以及 `dev-manager-ai-space/rules/` 和各 `*-ai-space/skills/` 下的内容到对应位置；前后端的 rules 与 `common-ai-space/skills/task-driven-dev` 均来自 `common-ai-space/`，初始化时复制到前端与后端两个空间，并按下方步骤替换占位符。
 
 ## 1. 确认项目目录与代码仓库路径
 
@@ -35,7 +35,7 @@ description: 创建一个AI全栈开发项目
 对前端项目空间（`$frontendProjPath`）和后端项目空间（`$backendProjPath`）分别执行以下步骤，两空间目标目录不同、可并行：
 
 1. 创建对应的开发者 AI Agent：前端查看[前端开发者Agent](./前端开发者Agent.md)，后端查看[后端开发者Agent](./后端开发者Agent.md)。
-2. 创建 AI rules：复制对应空间 `*-ai-space/rules/` 下的内容（前端用 `frontend-ai-space/rules/`，后端用 `backend-ai-space/rules/`）。
+2. 创建 AI rules：复制 [公共 rules 文件夹](./common-ai-space/rules/) 下的内容。
 3. 创建 AI skills：复制对应空间 `*-ai-space/skills/` 下的内容；再将 [公共 skills 文件夹](./common-ai-space/skills/) 下的 `task-driven-dev` 复制进来，复制时将文件中的 `{{taskFile}}` 占位符全部替换为对应空间的任务文件名（前端替换为 `frontend.md`，后端替换为 `backend.md`）。
 4. 在对应代码项目根目录下创建 `setting.local.json`，记录全栈项目管理目录的根路径（即当前项目目录的绝对路径），结构参见 `templates/开发管理设置模板.md` 第 2 节。
 
