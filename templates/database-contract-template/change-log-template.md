@@ -1,6 +1,6 @@
 # <表名> 变更历史
 
-> 本文件按时间倒序记录该表/集合的所有 schema 变更。每条记录通过 **dev-task ID**（`<模块名称>-<YYYYMMDD>-<序号>`）与对应的模块变更日志双向引用。
+> 本文件按时间倒序记录该表/集合的所有 schema 变更。每条记录通过 **dev-task ID**（`<任务简介>-<YYYYMMDD>-<序号>`）与对应的模块变更日志双向引用。
 > 模块变更日志位置：`/architecture/module/<模块名称>/change-log/<YYYYMMDD>-<序号>.md`
 
 ---
