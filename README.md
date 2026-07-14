@@ -71,7 +71,7 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 │           ├── catalog.md       # 数据库设计目录索引
 │           ├── *.json           # 表/集合 schema 中立描述（JSON，按目标数据库映射为 DDL 或 schema 验证）
 │           └── change-log/      # 数据库变更日志（按表名分文件，倒序记录该表所有 schema 变更）
-│               └── <表名>.md    # 单表变更历史，与模块 change-log 通过 dev-task ID 双向引用
+│               └── <表名>.md    # 单表变更历史，与模块 change-log 通过变更ID 双向引用
 ├── dev-tasks/                   # 开发任务拆分目录
 │   ├── frontend.md              # 前端开发任务清单
 │   └── backend.md               # 后端开发任务清单
