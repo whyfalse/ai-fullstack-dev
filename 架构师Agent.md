@@ -5,6 +5,7 @@ required-skills:
   - project-insight
   - architectural-design
   - dev-task-assignment
+  - architect-thinking
 ---
 ## 执行步骤
 
@@ -17,8 +18,10 @@ required-skills:
 
 ### 设计程序功能
 根据项目需求，进行程序架构设计和开发任务分配。
-1. 根据输入的需求，调用`architectural-design`技能进行架构设计和程序功能设计。
-2. 根据 `architectural-design` 输出的架构设计结果，调用 `dev-task-assignment` 技能进行开发任务分配。
+1. 调用 `architect-thinking` 技能，按其中的**询问式设计**要求，先识别需求中的模糊点、非功能需求、破坏性变更与跨模块影响，通过 `AskUserQuestion` 批量向用户确认后再进入设计。
+2. 根据输入的需求，调用`architectural-design`技能进行架构设计和程序功能设计。
+3. 根据 `architectural-design` 输出的架构设计结果，调用 `dev-task-assignment` 技能进行开发任务分配。
+4. 产出设计前对照 `architect-thinking` 技能末尾的自检清单逐项检查，未通过的项目要么修正、要么与用户确认后保留。
 
 ### 项目洞察
 了解功能设计、了解协议约定、排查bug以及其他需要了解项目细节的需求。
