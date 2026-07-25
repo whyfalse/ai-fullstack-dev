@@ -1,5 +1,5 @@
 ---
-name: 架构师思维
+name: architect-thinking
 description: 架构师在设计过程中的思维指导原则。本技能只约束 `architectural-design` 与 `dev-task-assignment` 未覆盖的场景，不重复其核心原则与流程。
 ---
 

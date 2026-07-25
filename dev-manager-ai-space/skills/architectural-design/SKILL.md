@@ -1,5 +1,5 @@
 ---
-name: 项目架构设计
+name: architectural-design
 description: 根据需求进行模块划分，架构设计，包含数据库设计、接口设计、前后端程序功能设计。
 ---
 

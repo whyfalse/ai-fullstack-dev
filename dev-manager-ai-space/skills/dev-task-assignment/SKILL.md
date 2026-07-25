@@ -1,5 +1,5 @@
 ---
-name: 开发任务分配
+name: dev-task-assignment
 description: 架构师完成程序功能设计后，可以调用此技能为前/后端开发者分配任务。
 ---
 

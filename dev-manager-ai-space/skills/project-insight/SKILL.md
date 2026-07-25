@@ -1,5 +1,5 @@
 ---
-name: 项目理解
+name: project-insight
 description: 当提问涉及现有项目的内部逻辑、功能实现、数据库结构、接口定义或潜在 Bug 原因时，使用此技能。
 ---
 

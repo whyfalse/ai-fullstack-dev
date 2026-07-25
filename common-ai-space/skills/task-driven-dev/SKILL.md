@@ -1,5 +1,5 @@
 ---
-name: 任务驱动开发
+name: task-driven-dev
 description: 在全栈开发模式中，这个技能描述了开发者如何进行开发任务的流程管理。
 ---
 
