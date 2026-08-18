@@ -21,4 +21,4 @@ description: 在全栈开发模式中，这个技能描述了开发者如何进�
 
 5. 开始开发。
 
-6. 开发完成后，更新 `<devManagerPath>/dev-tasks/{{taskFile}}` 中对应任务下的状态为待测试。
+6. 开发完成后，更新 `<devManagerPath>/dev-tasks/{{taskFile}}` 中对应任务下的状态为 `done`。

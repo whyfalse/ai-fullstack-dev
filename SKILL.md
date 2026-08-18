@@ -5,7 +5,7 @@ description: 创建一个AI全栈开发项目
 
 请严格按照下面的流程进行创建：
 
-> 说明：本仓库中的 `dev-manager-ai-space/`、`frontend-ai-space/`、`backend-ai-space/`、`common-ai-space/` 四个目录以及 `需求分析师Agent.md`、`架构师Agent.md`、`前端开发者Agent.md`、`后端开发者Agent.md`、`SKILL.md` 是**模板源文件**，仅用于初始化时读取，不需要复制到新项目。新项目只需复制 `templates/` 目录，以及 `dev-manager-ai-space/rules/` 和各 `*-ai-space/skills/` 下的内容到对应位置；前后端的 rules 与 `common-ai-space/skills/task-driven-dev` 均来自 `common-ai-space/`，初始化时复制到前端与后端两个空间，并按下方步骤替换占位符。
+> 说明：本仓库中的 `dev-manager-ai-space/`、`frontend-ai-space/`、`backend-ai-space/`、`common-ai-space/` 四个目录以及 `需求分析师Agent.md`、`架构师Agent.md`、`前端开发者Agent.md`、`后端开发者Agent.md`、`测试者Agent.md`、`SKILL.md` 是**模板源文件**，仅用于初始化时读取，不需要复制到新项目。新项目只需复制 `templates/` 目录，以及 `dev-manager-ai-space/rules/` 和各 `*-ai-space/skills/` 下的内容到对应位置；前后端的 rules 与 `common-ai-space/skills/task-driven-dev` 均来自 `common-ai-space/`，初始化时复制到前端与后端两个空间，并按下方步骤替换占位符。
 >
 > 四个 `*Agent.md` 是**与 AI 工具无关的 Agent 定义**（仅含 `name`、`description`、`required-skills` 与系统提示正文），初始化时不直接复制，而是按步骤 2 确认的 AI 工具动态生成对应格式的 Agent 文件。
 
@@ -33,7 +33,7 @@ description: 创建一个AI全栈开发项目
 
 ## 5. 创建项目管理目录的 Agent / rules / skills
 
-- **Agent**：读取 `./需求分析师Agent.md` 与 `./架构师Agent.md`，依据步骤 2 确认的 `$aiTool`，将该 Agent 定义（`name`、`description`、`required-skills`、正文系统提示）转换为对应 AI 工具的 Agent 配置格式后，写入项目管理目录中该工具约定的位置。生成时需遵循以下原则：
+- **Agent**：读取 `./需求分析师Agent.md`、`./架构师Agent.md` 与 `./测试者Agent.md`，依据步骤 2 确认的 `$aiTool`，将该 Agent 定义（`name`、`description`、`required-skills`、正文系统提示）转换为对应 AI 工具的 Agent 配置格式后，写入项目管理目录中该工具约定的位置。生成时需遵循以下原则：
   - 保留 `name`、`description` 与正文系统提示的原文，不篡改 Agent 的行为描述。
   - 将 `required-skills` 中列出的 skill 名称映射为目标工具的 skill 引用方式；这些 skill 必须能在下一步复制进来的 skills 目录中找到对应文件夹。
   - 目标工具专有的字段（如可调用工具集、模型、颜色、记忆范围等）按该工具的默认规范设置，不在源定义中固化。
