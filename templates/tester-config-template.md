@@ -24,6 +24,7 @@ seed 测试账号，供测试者登录与功能验证使用。团队统一维护
 - 后端单元测试：`<命令>`（如 `npm run test` / `pytest`）
 - 前端单元测试：`<命令>`（如 `npm run test`）
 - E2E 框架：`<框架>`（如 Playwright / Cypress）
+- E2E 执行命令：`<命令>`（如 `npx playwright test` / `npx cypress run`；留空或为占位符则 E2E 用例回退人工验证）
 - API 测试：`<方式>`（如 curl / Postman / IDEA HTTP Client）
 
 ### 测试环境
@@ -44,6 +45,7 @@ seed 测试账号，供测试者登录与功能验证使用。团队统一维护
 ### 测试工具
 
 - 后端单元测试：`./node_modules/.bin/jest`（Windows 路径差异覆盖）
+- E2E 执行命令：`npx playwright test --project=chromium`（个人只跑 Chromium，框架选型不变）
 
 ### 测试环境
 
