@@ -60,6 +60,8 @@ description: 根据需求进行模块划分，架构设计，包含数据库设�
 
 - 将功能测试用例写入到`/architecture/module/<模块名称>/test.md`，结构参照`/templates/test-template.md`（按功能点分节、用例强制稳定编号、每条用例四要素：描述/输入数据/预期结果/类型）。
 
+- 若 `/tester/config.md` 不存在或为空，初始化测试配置骨架（参照 `/templates/tester-config-template.md` 的三节结构：测试账号/测试工具/测试环境），工具选型参照 `/architecture/README.md` 记录的前后端技术栈；账号细节由用户后续填充，架构师只产出骨架。已存在则仅在工具/环境发生重大变更时更新，否则不动。
+
 - 若本次设计涉及**废弃**（接口废弃 / frontend.md/backend.md 部分功能废弃 / 模块整体废弃），按以下流程处理；本次未涉及废弃则跳过本步：
   - **接口废弃**（原地标注，不移动文件）：
     - 在 `/architecture/contracts/apis/catalog.md` 中将对应接口行的"状态"列改为 `deprecated`（永久下线改为 `archived`）；若该接口独有的数据模型不再被任何活跃接口引用，数据模型表对应行同样改状态。
@@ -88,5 +90,6 @@ description: 根据需求进行模块划分，架构设计，包含数据库设�
   - **变更ID 一致**：DB change-log、废弃横幅、模块 change-log 首行、（若已分配任务）任务看板"关联的变更"列中的变更ID 是否全部逐字一致，与"确定变更ID"步骤定下的值相同？模块 change-log 首行是否已按 `# 变更ID: <变更ID>` 格式记录？
   - **废弃可追溯**：废弃的接口/数据模型是否在 `apis/catalog.md` 标注状态、文件顶部追加废弃横幅并指向模块 change-log？frontend.md/backend.md 部分废弃是否归入 `## 已废弃` 小节？模块整体废弃是否已移至 `module/_archived/<模块名称>/` 且 catalog 状态改为 `archived`？模块 change-log 是否包含"废弃内容"小节？
   - **受影响功能点**：模块 change-log 是否包含"受影响功能点"小节（无功能影响时注明"无"），与 test.md 功能点分节名称一致，供测试者增量测试圈定范围？
+  - **测试配置**：`/tester/config.md` 是否存在（首次架构设计时应初始化骨架，参照 `/templates/tester-config-template.md`，工具选型参照 `architecture/README.md`）？
 
 - 总结出变更概览。

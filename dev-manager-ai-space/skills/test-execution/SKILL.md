@@ -10,11 +10,12 @@ description: 依据模块的功能测试用例（test.md）验证前后端实现
 - **契约参照**：验证实现是否符合 `test.md` 预期；契约级问题对照 `/architecture/contracts/apis/` 与 `/architecture/contracts/database/`。
 - **只验证不修复**：发现缺陷只报告，不修改 `/architecture/` 下文件，不修改前后端代码。
 - **任务解耦**：不读写 `/dev-tasks/`，测试对象是模块功能，不是开发任务行。
-- **报告可追溯**：每次测试一份报告，落盘到 `/test-reports/module/<模块>/`，命名带日期与序号；报告携带模块版本与覆盖的变更ID，便于历史追溯。
+- **配置分层**：测试账号/工具/环境读 `/tester/config.md`（团队基座、入库），个人差异由 `/tester/config.local.md` 覆盖（未覆盖项回退全局）；前后端路径仍读根 `setting.local.json`。
+- **报告可追溯**：每次测试一份报告，落盘到 `/tester/reports/module/<模块>/`，命名带日期与序号；报告携带模块版本与覆盖的变更ID，便于历史追溯。
 
 ## 执行步骤
 
-- 确认目标模块：读取 `/architecture/module/catalog.md` 确认模块存在且状态为 `active`；读取 `/architecture/module/<模块>/test.md` 解析测试用例（正常路径/边界/异常），记录每条用例的编号、描述、输入数据、预期结果。若 `test.md` 缺失或为空，停止并通知用户先由架构师生成测试用例。若 `test.md` 存在但结构不符合 `/templates/test-template.md`（缺功能点分节/用例编号/预期结果），停止并提示用户先由架构师按模板修正。
+- 确认目标模块：读取 `/architecture/module/catalog.md` 确认模块存在且状态为 `active`；读取 `/architecture/module/<模块>/test.md` 解析测试用例（正常路径/边界/异常），记录每条用例的编号、描述、输入数据、预期结果。若 `test.md` 缺失或为空，停止并通知用户先由架构师生成测试用例。若 `test.md` 存在但结构不符合 `/templates/test-template.md`（缺功能点分节/用例编号/预期结果），停止并提示先由架构师按模板修正。
 
 - 确定测试范围与变更ID：
   - **全量测试**：用户未指定变更ID，且模块无历史测试报告（首次测试）时，测试 `test.md` 全部用例。
@@ -25,6 +26,8 @@ description: 依据模块的功能测试用例（test.md）验证前后端实现
 
 - 读取当前目录下的 `setting.local.json`，获取 `frontend.projectPath` 与 `backend.projectPath`，定位前后端代码项目。
 
+- 读取测试配置：读 `/tester/config.md` 获取测试账号、测试工具选型、标准环境（团队基座）；若 `/tester/config.local.md` 存在则读取并按"私人覆盖全局、未覆盖项回退全局"合并，得到本次实际使用的账号集、工具命令与环境。若 `/tester/config.md` 不存在或为空，停止测试并通知用户先由架构师在首次架构设计时生成测试配置（参照 `/templates/tester-config-template.md`）。
+
 - 按需读取 `/architecture/module/<模块>/backend.md`、`/architecture/module/<模块>/frontend.md`、`/architecture/contracts/apis/`、`/architecture/contracts/database/` 作为契约与功能设计参照。
 
 - 对范围内用例执行验证：
@@ -34,15 +37,15 @@ description: 依据模块的功能测试用例（test.md）验证前后端实现
 
 - 比对实际结果与 `test.md` 预期，逐条判定：**通过** / **失败** / **未覆盖**（无法自动验证时）。
 
-- 确定报告序号：序号为当天该模块 `test-reports` 目录下已有文件数（从 0 开始）；用 `Glob /test-reports/module/<模块>/*.md` 确认序号。
+- 确定报告序号：序号为当天该模块 `tester/reports` 目录下已有文件数（从 0 开始）；用 `Glob /tester/reports/module/<模块>/*.md` 确认序号。
 
-- 生成测试报告，写入到 `/test-reports/module/<模块>/<YYYYMMDD>-<序号>.md`。文件首行格式：`# 测试报告: <模块> (<YYYYMMDD>-<序号>)`。
+- 生成测试报告，写入到 `/tester/reports/module/<模块>/<YYYYMMDD>-<序号>.md`。文件首行格式：`# 测试报告: <模块> (<YYYYMMDD>-<序号>)`。
 
 ## 报告格式
 
 报告须包含以下小节：
 
-- **元信息**：测试时间、测试范围（模块名 + 对应 `test.md` 路径）、前后端项目路径、**模块版本（测试时点 `<YYYYMMDD>-<序号>`）**、**测试范围类型（全量/增量）**、**本次覆盖变更ID 列表**、**覆盖功能点列表**。
+- **元信息**：测试时间、测试范围（模块名 + 对应 `test.md` 路径）、前后端项目路径、**模块版本（测试时点 `<YYYYMMDD>-<序号>`）**、**测试范围类型（全量/增量）**、**本次覆盖变更ID 列表**、**覆盖功能点列表**、**本次实际使用的测试账号集与测试环境（标注哪些来自 `/tester/config.local.md` 个人覆盖）**。
 - **用例结果总表**：用例编号 | 描述 | 预期 | 实际 | 判定 | 备注。
 - **失败用例详情**：每条失败用例附最小复现步骤、实际现象、相关文件路径（前后端代码或契约文件）。
 - **未覆盖用例**：列出未自动验证的用例及原因（如"需人工 E2E 验证"）。
@@ -56,7 +59,7 @@ description: 依据模块的功能测试用例（test.md）验证前后端实现
 - 不读写 `/dev-tasks/`。
 - 测试范围仅限 `test.md` 写明的用例；增量测试时进一步收窄到变更功能点。
 - 前端 E2E 不自动执行，标注"需人工 E2E 验证"。
-- 报告落盘到 `/test-reports/`，不写回 `test.md`。
+- 报告落盘到 `/tester/reports/`，不写回 `test.md`。
 - 未指定变更ID 时不自动全跑，列未测变更清单供用户选。
 
 ## 自检
@@ -64,7 +67,9 @@ description: 依据模块的功能测试用例（test.md）验证前后端实现
 - 是否所有范围内 `test.md` 用例都有判定结果（通过/失败/未覆盖），无遗漏？
 - 失败用例是否附了最小复现信息与相关文件路径？
 - 是否避免了修改 `/architecture/` 与 `/dev-tasks/` 下的文件？
-- 报告是否落盘到 `/test-reports/module/<模块>/` 且命名符合 `<YYYYMMDD>-<序号>`，首行为 `# 测试报告: <模块> (<YYYYMMDD>-<序号>)`？
+- 报告是否落盘到 `/tester/reports/module/<模块>/` 且命名符合 `<YYYYMMDD>-<序号>`，首行为 `# 测试报告: <模块> (<YYYYMMDD>-<序号>)`？
+- 元信息是否记录了本次实际使用的测试账号集与测试环境（标注来自 `config.local.md` 的个人覆盖项）？
+- 是否读取了 `/tester/config.md`（必要时合并 `config.local.md`），未配置时是否停止并提示先由架构师生成？
 - E2E 类用例是否标注了"需人工 E2E 验证"，而非强行跑或静默跳过？
 - 报告是否包含元信息、结果总表、失败详情、未覆盖、（增量时）无影响变更、总结各小节？
 - 增量测试时，元信息是否记录了模块版本、测试范围类型、覆盖变更ID、覆盖功能点？

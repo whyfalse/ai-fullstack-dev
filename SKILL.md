@@ -23,7 +23,7 @@ description: 创建一个AI全栈开发项目
 
 ## 3. 创建项目管理目录骨架
 
-- 读取 `./dev-manager-ai-space/rules/directory-structure.md`，按照其中的目录结构创建目录和文件。注意：只创建确定的目录和文件，不要创建多余的目录和文件；**其中的 `setting.local.json` 跳过，由步骤 4 写入**。
+- 读取 `./dev-manager-ai-space/rules/directory-structure.md`，按照其中的目录结构创建目录和文件。注意：只创建确定的目录和文件，不要创建多余的目录和文件；**其中的 `setting.local.json` 跳过，由步骤 4 写入**；**`tester/config.md` 跳过，由架构师首次架构设计时产出（参照 `templates/tester-config-template.md`）**；**`tester/config.local.md` 跳过，由开发者个人按需创建**；`tester/reports/` 创建空目录。
 - 将 `./templates/` 下的文件复制到项目的 `templates/` 下。
 - 将 `./templates/项目README模板.md`（与上一步同源）复制到项目根目录并改名为 `README.md`；初始化时保留模板中的占位文本（如"这里是项目概述"），由用户后续填写。
 
@@ -61,3 +61,4 @@ description: 创建一个AI全栈开发项目
 ## 8. 完成提示
 
 - 初始化全部完成后，提示用户：下一步可调用**需求分析师 Agent** 启动需求收集流程。
+- 提示用户：`tester/config.md`（测试账号/工具/环境）将在首次调用架构师进行架构设计时由架构师生成骨架，届时按提示补充账号细节；个人差异配置写在 `tester/config.local.md`（不入库）。

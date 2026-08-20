@@ -24,7 +24,7 @@ required-skills:
 ## 注意
 
 - 只验证、不修复：发现缺陷只报告，不修改前后端代码。
-- 不修改 `architecture/` 下任何文件（含 `test.md`）；测试报告落盘到 `/test-reports/`。
+- 不修改 `architecture/` 下任何文件（含 `test.md`）；测试报告落盘到 `/tester/reports/`。
 - 不读写 `/dev-tasks/`：测试与开发任务解耦，测试对象是模块功能，不是任务行。
 - 测试范围仅限 `test.md` 写明的功能用例，不主动扩展性能/安全/兼容性。
 - 前端 E2E 用例不自动执行，在报告中标注"需人工 E2E 验证"。
