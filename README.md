@@ -1,5 +1,7 @@
 # AI全栈开发工作流
 
+**当前版本：v1.0.0**
+
 ## 📖 简介
 
 **本项目属于一个AI技能，用于快速创建一个AI全栈开发项目。**
@@ -43,6 +45,7 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 /
 ├── README.md                    # 项目简介，包含当前版本、项目背景等信息
 ├── setting.local.json           # 个人设置，每个开发者单独进行配置
+├── framework.json               # 框架元信息（框架名称/版本/初始化日期）
 ├── requirements/                # 需求管理目录
 │   ├── docs/                    # 通用需求文档目录，存放PRD、原型图、质量管理等文档
 │   ├── module/                  # 模块级需求目录
@@ -128,8 +131,8 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 
 ### ✅ 前置条件
 
-- 已安装支持自定义 Agent / Skill（或等价机制，如 Rules、Prompt 文件）的 AI 编码助手，如 Claude Code、Cursor、Windsurf、Cline 等
-- 已将本仓库作为可用 Skill 接入助手（接入方式按所用工具而定：Claude Code 可克隆到 `~/.claude/skills/ai-fullstack-dev/` 或通过插件安装；Cursor/Windsurf/Cline 等按各自的自定义规则/Agent 接入方式配置）
+- 已安装支持自定义 Agent / Skill（或等价机制，如 Rules、Prompt 文件）的 AI 编码助手
+- 已将本仓库作为可用 Skill 接入助手（接入方式按所用工具的自定义 Skill / 规则接入约定配置）
 - 已创建一个空目录作为 AI 全栈开发项目的根目录（即 dev-manager 空间）
 - 前端项目代码目录与后端项目代码目录已就绪（可空仓库，但路径需确定）
 
@@ -139,6 +142,15 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 2. 按提示确认当前目录作为项目根目录，输入前端项目路径 `$frontendProjPath` 和后端项目路径 `$backendProjPath`，并选择新项目所使用的 AI 工具
 3. 系统将按所选 AI 工具的约定动态生成对应的 Agent 配置、Rules 与 Skills，并在前后端空间间复制共享技能 `task-driven-dev`
 4. 检查项目根目录与前后端空间下生成的 `setting.local.json` 是否正确（结构参见 `templates/开发管理设置模板.md`）—— 三空间之间的路径互引全靠此文件，配置错误会导致 Agent 找不到契约或任务
+5. 确认项目根目录下生成的 `framework.json` 记录的框架版本与初始化日期无误（字段定义与结构参见 `templates/框架元信息模板.md`）—— 该文件记录初始化时所用的框架元信息，入库共享，可用于后续与模板源版本比对
+
+### ⬆️ 升级已有项目
+
+框架模板源更新后，已初始化的项目无需重建，通过升级流程同步：
+
+1. 在项目管理目录下再次调用 `ai-fullstack-dev` Skill，表达升级意图（如"升级该项目"）；若技能检测到该目录已是本框架创建的项目，也会主动询问是升级还是重新创建
+2. 技能将比对项目内已安装的 Agent / Rules / Skills / templates 与模板源的差异，生成变更清单（新增 / 更新 / 冲突）供确认；本地修改过的文件以冲突形式逐项确认处理方式
+3. 确认后执行同步并更新 `framework.json` 中的版本号；项目的业务数据（`requirements/`、`architecture/`、`dev-tasks/`、`tester/`）不会比对、覆盖或删除
 
 ### 💻 开始开发
 
