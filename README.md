@@ -1,6 +1,6 @@
 # AI全栈开发工作流
 
-**当前版本：v1.0.0**
+**当前版本：v1.1.0**
 
 ## 📖 简介
 
@@ -89,7 +89,11 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 └── templates/                   # 模板目录（模板、参考资料）
     ├── api-contract-template/
     ├── database-contract-template/
-    └── 开发任务看板模板.md
+    ├── test-template.md
+    ├── tester-config-template.md
+    ├── 开发任务看板模板.md
+    ├── 程序功能模块目录模板.md
+    └── 需求模块目录模板.md
 ```
 
 ## 🔄 开发工作流
@@ -141,8 +145,8 @@ AI全栈开发工作流是一套基于多 AI Agent 协作的**契约驱动全栈
 1. 在项目管理目录下调用 `ai-fullstack-dev` Skill 启动初始化
 2. 按提示确认当前目录作为项目根目录，输入前端项目路径 `$frontendProjPath` 和后端项目路径 `$backendProjPath`，并选择新项目所使用的 AI 工具
 3. 系统将按所选 AI 工具的约定动态生成对应的 Agent 配置、Rules 与 Skills，并在前后端空间间复制共享技能 `task-driven-dev`
-4. 检查项目根目录与前后端空间下生成的 `setting.local.json` 是否正确（结构参见 `templates/开发管理设置模板.md`）—— 三空间之间的路径互引全靠此文件，配置错误会导致 Agent 找不到契约或任务
-5. 确认项目根目录下生成的 `framework.json` 记录的框架版本与初始化日期无误（字段定义与结构参见 `templates/框架元信息模板.md`）—— 该文件记录初始化时所用的框架元信息，入库共享，可用于后续与模板源版本比对
+4. 检查项目根目录与前后端空间下生成的 `setting.local.json` 是否正确（结构参见 `init-templates/开发管理设置模板.md`）—— 三空间之间的路径互引全靠此文件，配置错误会导致 Agent 找不到契约或任务
+5. 确认项目根目录下生成的 `framework.json` 记录的框架版本与初始化日期无误（字段定义与结构参见 `init-templates/框架元信息模板.md`）—— 该文件记录初始化时所用的框架元信息，入库共享，可用于后续与模板源版本比对
 
 ### ⬆️ 升级已有项目
 

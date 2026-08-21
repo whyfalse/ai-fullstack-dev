@@ -39,7 +39,7 @@ description: 根据需求进行模块划分，架构设计，包含数据库设�
 
 - **确定本次变更的变更ID**：`<任务简介>-<YYYYMMDD>-<序号>`。
   - **任务简介**：5-15 字，**不得含连字符 `-`**（变更ID `<任务简介>-<YYYYMMDD>-<序号>` 靠 `-` 分段解析，含 `-` 会让日期段无法定位）。
-  - **`<YYYYMMDD>-<序号>`**：作为本次模块 change-log 文件名。日期为今天，序号为当天该模块 change-log 目录下已有文件数（从 0 开始）；用 `Glob /architecture/module/<模块名称>/change-log/*.md` 确认序号。
+  - **`<YYYYMMDD>-<序号>`**：作为本次模块 change-log 文件名。日期为今天，序号为当天该模块 change-log 目录下**已有文件的最大序号 +1**（当天首个变更序号为 0）；用 `Glob /architecture/module/<模块名称>/change-log/<YYYYMMDD>-*.md` 确认序号，无匹配文件则序号为 0。
   - 变更ID 一经确定，后续 DB change-log、废弃横幅、模块 change-log、任务看板均引用此变更ID，**不得更改**。
 
 - 将变更后的数据库表/集合写入到`/architecture/contracts/database/`下，统一使用 `.json` 中立描述（字段、类型、约束、索引的元数据，由开发者按目标数据库类型映射为具体 DDL 或 schema 验证），并更新目录`/architecture/contracts/database/catalog.md`。示例请参照`/templates/database-contract-template/users.json`，注意，严格按照示例文件的格式进行编写，不得额外添加内容。

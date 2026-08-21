@@ -37,7 +37,7 @@ description: 依据模块的功能测试用例（test.md）验证前后端实现
 
 - 比对实际结果与 `test.md` 预期，逐条判定：**通过** / **失败** / **未覆盖**（无法自动验证时）。
 
-- 确定报告序号：序号为当天该模块 `tester/reports` 目录下已有文件数（从 0 开始）；用 `Glob /tester/reports/module/<模块>/*.md` 确认序号。
+- 确定报告序号：序号为当天该模块 `tester/reports` 目录下已有报告的最大序号 +1（当天首份报告序号为 0）；用 `Glob /tester/reports/module/<模块>/<YYYYMMDD>-*.md` 确认序号，无匹配文件则序号为 0。
 
 - 生成测试报告，写入到 `/tester/reports/module/<模块>/<YYYYMMDD>-<序号>.md`。文件首行格式：`# 测试报告: <模块> (<YYYYMMDD>-<序号>)`。
 
