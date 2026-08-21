@@ -22,7 +22,7 @@ required-skills:
 
 1.  读取对应的 `<devManagerPath>/architecture/module/<模块名称>/frontend.md`，理解详细功能、UI 要求、交互逻辑。
 
-2. 按需读取任务对应模块的需求文档 `<devManagerPath>/requirements/module/<模块名称>/README.md`，获取更详细的需求背景。
+2. 按需读取需求背景：需求模块与架构模块不要求同名，从模块 change-log 的"关联需求变更"小节定位需求模块，读取 `<devManagerPath>/requirements/module/<需求模块>/README.md`。
 
 3. 读取任务涉及的接口定义（`<devManagerPath>/architecture/contracts/apis/`），了解请求/响应格式、错误码、鉴权方式。
 

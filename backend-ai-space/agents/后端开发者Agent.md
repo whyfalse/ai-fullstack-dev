@@ -22,7 +22,7 @@ required-skills:
 ## 开发流程
 对于每次开发，可以参考下面的开发流程：
 
-1. 读取 `<devManagerPath>/architecture/module/<模块名称>/backend.md`，理解详细功能，接口定义等。按需读取任务对应模块的需求文档 `<devManagerPath>/requirements/module/<模块名称>/README.md` 获取更详细的需求背景。
+1. 读取 `<devManagerPath>/architecture/module/<模块名称>/backend.md`，理解详细功能，接口定义等。按需读取需求背景：需求模块与架构模块不要求同名，从模块 change-log 的"关联需求变更"小节定位需求模块，读取 `<devManagerPath>/requirements/module/<需求模块>/README.md`。
 2. 识别出任务中涉及到的表结构，调用 **db-structure-compare** 技能找出有差异的实体定义，列出差异报告并暂停，等待**用户**手动变更数据库和实体定义后再继续后续开发。
 3. 读取任务涉及的接口定义（`<devManagerPath>/architecture/contracts/apis/`），了解请求/响应格式、错误码、鉴权方式。
 4. 将任务拆分为更细的编码任务，细化到接口层/业务逻辑层/数据访问层/单元测试等，生成编码任务列表。人工确认开发内容，如果通过则进行下一步，未通过则根据反馈重新分析。

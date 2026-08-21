@@ -1,7 +1,7 @@
 ---
 name: ai-fullstack-dev
 description: 创建一个AI全栈开发项目
-version: 1.1.1
+version: 1.2.0
 ---
 
 请严格按照下面的流程进行创建：

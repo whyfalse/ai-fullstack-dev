@@ -23,7 +23,11 @@ description: 根据需求进行模块划分，架构设计，包含数据库设�
 
 - 若 `/architecture/README.md` 不存在或内容为空，初始化架构设计说明（包含架构设计思维、前后端技术选型、目录结构约定）；若已存在，仅在技术选型或目录结构发生重大变更时更新。
 
-- 该需求可以划分到新的程序模块还是对原有模块进行更改，如果是新模块，创建`/architecture/module/<模块名称>/`文件夹，并在`/architecture/module/catalog.md`中追加一行（模块名称、简介、备注、状态）。新模块状态填 `active`。若是修改已有模块，按需更新 catalog 中对应行的简介；若本次涉及废弃见后续"废弃流程"步骤。
+- **确定需求变更与架构模块的映射**：需求模块与架构模块**不要求同名、不要求一一对应**，按技术边界自由划分程序模块。确定本次需求变更涉及的架构模块（1 到 N 个）：
+  - 涉及的每个架构模块，若是新模块，创建`/architecture/module/<模块名称>/`文件夹，并在`/architecture/module/catalog.md`中追加一行（模块名称、简介、备注、状态）。新模块状态填 `active`。若是修改已有模块，按需更新 catalog 中对应行的简介；若本次涉及废弃见后续"废弃流程"步骤。
+  - **DB 与 API 契约按整次需求统一设计**（写入全局契约目录，不按模块重复）；但变更ID、模块 change-log、frontend.md / backend.md / test.md、任务分配均**按架构模块各自独立产出**。
+  - **一次架构模块变更只关联一条需求变更**：若发现多个需求变更总是落到同一批架构模块，应提示用户回到需求分析侧合并模块，不在架构侧把多条需求变更聚合进一次架构变更。
+  - 记录触发本次设计的需求变更：`/requirements/module/<需求模块>/change-log/<YYYYMMDD>-<序号>.md`（通常为该需求模块 change-log 目录下最新一条；无法确定时与用户确认），后续写入模块 change-log 的"关联需求变更"小节。
 
 - 读取`/architecture/contracts/database/`下现有的数据库定义，理解当前业务实体模型，作为数据库表设计的参考。
 
@@ -40,6 +44,7 @@ description: 根据需求进行模块划分，架构设计，包含数据库设�
 - **确定本次变更的变更ID**：`<任务简介>-<YYYYMMDD>-<序号>`。
   - **任务简介**：5-15 字，**不得含连字符 `-`**（变更ID `<任务简介>-<YYYYMMDD>-<序号>` 靠 `-` 分段解析，含 `-` 会让日期段无法定位）。
   - **`<YYYYMMDD>-<序号>`**：作为本次模块 change-log 文件名。日期为今天，序号为当天该模块 change-log 目录下**已有文件的最大序号 +1**（当天首个变更序号为 0）；用 `Glob /architecture/module/<模块名称>/change-log/<YYYYMMDD>-*.md` 确认序号，无匹配文件则序号为 0。
+  - **按模块独立确定**：本次需求变更涉及多个架构模块时，每个模块各自确定一个变更ID（序号按各自模块的 change-log 目录计）。变更ID 仅在模块内保证唯一，跨模块可能重名。
   - 变更ID 一经确定，后续 DB change-log、废弃横幅、模块 change-log、任务看板均引用此变更ID，**不得更改**。
 
 - 将变更后的数据库表/集合写入到`/architecture/contracts/database/`下，统一使用 `.json` 中立描述（字段、类型、约束、索引的元数据，由开发者按目标数据库类型映射为具体 DDL 或 schema 验证），并更新目录`/architecture/contracts/database/catalog.md`。示例请参照`/templates/database-contract-template/users.json`，注意，严格按照示例文件的格式进行编写，不得额外添加内容。
@@ -79,7 +84,7 @@ description: 根据需求进行模块划分，架构设计，包含数据库设�
     - 模块涉及的接口按"接口废弃"流程在原位标注；涉及的表按 DB change-log "废弃表"变更类型记录（已在数据库变更日志步骤覆盖）。
   - **模块 change-log 记录**：本次模块 change-log（模块整体废弃时为归档前最后一条）须包含一个**废弃内容**小节，列出废弃的接口、表、功能点及变更ID，与各废弃文件顶部的横幅构成双向引用。
 
-- 变更内容写入到`/architecture/module/<模块名称>/change-log/<YYYYMMDD>-<序号>.md`（文件名即确定变更ID 时定的编号）。文件**首行**显式记录变更ID，格式：`# 变更ID: <变更ID>`。变更内容须包含一个**数据库变更**小节：若本次涉及 schema 变更，列出每张受影响表名、变更类型、是否破坏性，并给出指向`/architecture/contracts/database/change-log/<表名>.md`的链接；若未涉及 schema 变更，注明"无"。该小节与数据库 change-log 构成双向引用，变更ID 保持一致。若本次涉及废弃，还须包含上一步所述的**废弃内容**小节。变更内容还须包含一个**受影响功能点**小节，列出本次变更涉及的 test.md 功能点名称（与`/templates/test-template.md`中的`## 功能点：<名称>`一致）；若本次未涉及功能点变更（如纯 DB schema 变更无功能影响），注明"无"。测试者据此圈定增量测试范围。
+- 变更内容写入到`/architecture/module/<模块名称>/change-log/<YYYYMMDD>-<序号>.md`（文件名即确定变更ID 时定的编号）。文件**首行**显式记录变更ID，格式：`# 变更ID: <变更ID>`。变更内容须包含一个**关联需求变更**小节：指向触发本次设计的需求变更日志`/requirements/module/<需求模块>/change-log/<YYYYMMDD>-<序号>.md`（需求模块与架构模块不要求同名，凭此小节回溯需求来源）。本次需求变更涉及多个架构模块时，还须包含一个**关联变更**小节，列出同次需求变更在其他架构模块产生的变更ID 及其 change-log 路径，各模块 change-log 之间据此互相引用。变更内容须包含一个**数据库变更**小节：若本次涉及 schema 变更，列出每张受影响表名、变更类型、是否破坏性，并给出指向`/architecture/contracts/database/change-log/<表名>.md`的链接；若未涉及 schema 变更，注明"无"。该小节与数据库 change-log 构成双向引用，变更ID 保持一致。若本次涉及废弃，还须包含上一步所述的**废弃内容**小节。变更内容还须包含一个**受影响功能点**小节，列出本次变更涉及的 test.md 功能点名称（与`/templates/test-template.md`中的`## 功能点：<名称>`一致）；若本次未涉及功能点变更（如纯 DB schema 变更无功能影响），注明"无"。测试者据此圈定增量测试范围。
 
 - 对照核心原则进行自检，发现问题需回到对应步骤修正：
   - **契约先行**：所有前后端交互是否都有对应的 API 契约定义？
@@ -88,6 +93,7 @@ description: 根据需求进行模块划分，架构设计，包含数据库设�
   - **反模式**：是否避免了前后端共享实体类？API 响应是否裁剪而非返回 DB 全字段？是否避免了 DB 存储 JSON 业务核心字段？
   - **变更可追溯**：涉及 schema 变更的每张表是否都已在 `/architecture/contracts/database/change-log/<表名>.md` 追加条目，且与模块 change-log 双向引用、变更ID 一致？
   - **变更ID 一致**：DB change-log、废弃横幅、模块 change-log 首行、（若已分配任务）任务看板"关联的变更"列中的变更ID 是否全部逐字一致，与"确定变更ID"步骤定下的值相同？模块 change-log 首行是否已按 `# 变更ID: <变更ID>` 格式记录？
+  - **需求追溯**：模块 change-log 是否包含"关联需求变更"小节并指向对应的需求变更日志？本次涉及多个架构模块时，各模块 change-log 是否都包含"关联变更"小节且互相引用？
   - **废弃可追溯**：废弃的接口/数据模型是否在 `apis/catalog.md` 标注状态、文件顶部追加废弃横幅并指向模块 change-log？frontend.md/backend.md 部分废弃是否归入 `## 已废弃` 小节？模块整体废弃是否已移至 `module/_archived/<模块名称>/` 且 catalog 状态改为 `archived`？模块 change-log 是否包含"废弃内容"小节？
   - **受影响功能点**：模块 change-log 是否包含"受影响功能点"小节（无功能影响时注明"无"），与 test.md 功能点分节名称一致，供测试者增量测试圈定范围？
   - **测试配置**：`/tester/config.md` 是否存在（首次架构设计时应初始化骨架，参照 `/templates/tester-config-template.md`，工具选型参照 `architecture/README.md`）？
