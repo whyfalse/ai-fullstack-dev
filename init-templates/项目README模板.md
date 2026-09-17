@@ -56,7 +56,8 @@
 │   └── ...
 ├── dev-tasks/                   # 开发任务拆分目录
 │   ├── frontend.md              # 前端开发任务清单
-│   └── backend.md               # 后端开发任务清单
+│   ├── backend.md               # 后端开发任务清单
+│   └── pipeline-log.md          # 流水线运行日志（项目经理 Agent 追加式写入，可选）
 ├── tester/                      # 测试者工作文件夹（配置 + 报告）
 │   ├── config.md                # 全局测试配置（团队共享、入库：账号/工具选型/标准环境）
 │   ├── config.local.md          # 私人测试配置（个人覆盖、不入库）
