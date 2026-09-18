@@ -1,12 +1,12 @@
 ---
 name: ai-fullstack-dev
 description: 创建一个AI全栈开发项目
-version: 2.0.0
+version: 2.1.0
 ---
 
 请严格按照下面的流程进行创建：
 
-> 说明：本仓库中的 `dev-manager-ai-space/`、`frontend-ai-space/`、`backend-ai-space/`、`common-ai-space/` 四个目录以及 `SKILL.md` 是**模板源文件**，仅用于初始化时读取，不需要复制到新项目。新项目只需复制 `templates/` 目录，以及 `dev-manager-ai-space/rules/` 和各 `*-ai-space/skills/` 下的内容到对应位置；前后端的 rules 与 `common-ai-space/skills/task-driven-dev` 均来自 `common-ai-space/`，初始化时复制到前端与后端两个空间，并按下方步骤替换占位符。
+> 说明：本仓库中的 `dev-manager-ai-space/`、`frontend-ai-space/`、`backend-ai-space/`、`common-ai-space/` 四个目录以及 `SKILL.md` 是**模板源文件**，仅用于初始化时读取，不需要复制到新项目。新项目只需复制 `templates/` 目录，以及 `dev-manager-ai-space/rules/`、各 `*-ai-space/skills/` 与 `common-ai-space/skills/task-driven-dev` 下的内容到对应位置；`task-driven-dev` 来自 `common-ai-space/`，初始化时复制到前端与后端两个空间，并按下方步骤替换占位符。不向代码仓安装任何 rules。
 >
 > 各 `*-ai-space/agents/` 与 `common-ai-space/agents/` 下的 `*Agent.md` 是**与 AI 工具无关的 Agent 定义**（仅含 `name`、`description`、`required-skills` 与系统提示正文），初始化时不直接复制，而是按步骤 2 确认的 AI 工具动态生成对应格式的 Agent 文件。所有 Agent（含开发者）统一生成到新项目的项目管理目录，代码仓不安装任何 Agent。
 >
@@ -67,10 +67,9 @@ version: 2.0.0
 
 ## 6. 创建前端与后端项目空间（两空间互不依赖，可并行执行）
 
-对前端项目空间（`$frontendProjPath`）和后端项目空间（`$backendProjPath`）分别执行以下步骤，两空间目标目录不同、可并行。**注意：代码仓不安装任何 Agent（开发者 Agent 已统一安装于项目管理目录，见步骤 5），也不创建仓侧 `setting.local.json`；本步骤安装的 rules 与 skills 是行为约束与流程纪律的载体，供开发者 Agent 以 `Read` 方式加载。**
+对前端项目空间（`$frontendProjPath`）和后端项目空间（`$backendProjPath`）分别执行以下步骤，两空间目标目录不同、可并行。**注意：代码仓不安装任何 Agent（开发者 Agent 已统一安装于项目管理目录，见步骤 5），也不创建仓侧 `setting.local.json`，也不安装任何 rules（仓内仅保留用户自己的约束文件）；本步骤安装的 skills 是流程纪律的载体，供开发者 Agent 以 `Read` 方式加载。**
 
-1. **创建 AI rules**：按 `$aiTool` 的规则目录约定，复制 `./common-ai-space/rules/` 下的内容到对应代码项目。
-2. **创建 AI skills**：按 `$aiTool` 的 skills 目录约定，复制对应空间 `*-ai-space/skills/` 下的内容到对应代码项目；再将 `./common-ai-space/skills/` 下的 `task-driven-dev` 复制进来，复制时将文件中的 `{{taskFile}}` 占位符全部替换为对应空间的任务文件名（前端替换为 `frontend.md`，后端替换为 `backend.md`）。
+1. **创建 AI skills**：按 `$aiTool` 的 skills 目录约定，复制对应空间 `*-ai-space/skills/` 下的内容到对应代码项目；再将 `./common-ai-space/skills/` 下的 `task-driven-dev` 复制进来，复制时将文件中的 `{{taskFile}}` 占位符全部替换为对应空间的任务文件名（前端替换为 `frontend.md`，后端替换为 `backend.md`）。
 
 ## 7. 记录前后端技术栈
 
