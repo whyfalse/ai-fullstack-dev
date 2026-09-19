@@ -19,20 +19,31 @@ seed 测试账号，供测试者登录与功能验证使用。团队统一维护
 
 ### 测试工具
 
-团队统一选型的测试工具与执行命令。E2E 框架一经选定不可个人替换（影响 `test.md` 用例编写）。
+团队统一选型的测试工具与执行命令。单元测试命令按模块分列（模块清单见 `modules.json`）；E2E 框架一经选定不可个人替换（影响 `test.md` 用例编写）。
 
-- 后端单元测试：`<命令>`（如 `npm run test` / `pytest`）
-- 前端单元测试：`<命令>`（如 `npm run test`）
+**单元测试（按模块）**
+
+| 模块 | 单元测试命令 |
+| ---- | ----------- |
+| backend | `npm run test`（如 `pytest`） |
+| frontend | `npm run test` |
+
 - E2E 框架：`<框架>`（如 Playwright / Cypress）
 - E2E 执行命令：`<命令>`（如 `npx playwright test` / `npx cypress run`；留空或为占位符则 E2E 用例回退人工验证）
+- E2E 宿主模块：`<moduleId>`（E2E 脚本所在的前端模块仓，执行 E2E 时在该仓路径下运行）
 - API 测试：`<方式>`（如 curl / Postman / IDEA HTTP Client）
 
 ### 测试环境
 
-标准本地环境地址，团队约定的默认环境。个人环境地址可在 `config.local.md` 覆盖。
+标准本地环境地址，团队约定的默认环境，按模块分列；个人环境地址可在 `config.local.md` 覆盖。
 
-- 后端服务：`http://localhost:<端口>`
-- 前端服务：`http://localhost:<端口>`
+**服务地址（按模块）**
+
+| 模块 | 服务地址 |
+| ---- | -------- |
+| backend | `http://localhost:8080` |
+| frontend | `http://localhost:3000` |
+
 - 测试数据库：`<连接信息或引用>`
 
 ## config.local.md 结构
@@ -44,12 +55,12 @@ seed 测试账号，供测试者登录与功能验证使用。团队统一维护
 
 ### 测试工具
 
-- 后端单元测试：`./node_modules/.bin/jest`（Windows 路径差异覆盖）
+- backend 单元测试：`./node_modules/.bin/jest`（Windows 路径差异覆盖）
 - E2E 执行命令：`npx playwright test --project=chromium`（个人只跑 Chromium，框架选型不变）
 
 ### 测试环境
 
-- 后端服务：`http://localhost:8081`（个人起了不同端口）
+- backend 服务：`http://localhost:8081`（个人起了不同端口）
 
 ### 测试账号
 

@@ -2,6 +2,7 @@
   "$comment": "用户表/集合 schema 模板（数据库中立描述，由开发者按目标数据库类型映射为具体 DDL 或 schema 验证）",
   "name": "users",
   "comment": "用户表",
+  "owner": "backend",
   "fields": [
     { "name": "id",            "type": "bigint",   "primaryKey": true, "autoIncrement": true, "nullable": false, "comment": "用户ID，主键" },
     { "name": "user_name",     "type": "varchar",  "length": 50,  "unique": true,  "nullable": false, "comment": "用户名，唯一" },
