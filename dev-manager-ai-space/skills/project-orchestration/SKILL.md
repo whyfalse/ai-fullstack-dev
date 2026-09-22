@@ -32,7 +32,7 @@ description: 项目经理的流程编排技能：子代理派发规范、GATE �
 本次任务: 任务编号 <X> | 关联的变更 <变更ID> | 所属模块 <模块>
 开工前必读（Read 并严格遵循）:
   - <repoPath> 下的 rules / CLAUDE.md 等行为约束文件
-  - <devManagerPath> 的 skills 目录下本角色所需 SKILL.md（task-driven-dev、dev-thinking-<moduleId>）
+  - <devManagerPath> 的 skills 目录下本角色所需技能文件（task-driven-dev/SKILL.md，dev-thinking/SKILL.md 与 dev-thinking/<模块类型>.md）
   - <devManagerPath>/architecture/module/<模块>/change-log/<变更ID尾段>.md
 已完成步骤: <摘要（重派兜底时）>
 门禁批复记录: <上轮 GATE 原文与用户批复（重派兜底时；续接时转达批复即可）>

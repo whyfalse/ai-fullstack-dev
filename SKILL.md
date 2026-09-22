@@ -1,7 +1,7 @@
 ---
 name: ai-fullstack-dev
 description: 创建一个AI全栈开发项目
-version: 2.2.0
+version: 2.3.0
 ---
 
 按下面的流程创建：
@@ -60,7 +60,7 @@ version: 2.2.0
 - **开发者 Agent（统一安装于项目管理空间）**：读取 `./common-ai-space/agents/开发者Agent.md`，为 `$modules` 中的每个代码模块各生成一份目标工具格式的 Agent 文件，写入**项目管理目录**中 `$aiTool` 约定的 agent 存放位置。经典双模块项目即生成 `frontend-developer` / `backend-developer` 两份。**无条件生成**（手动模式同样在项目管理空间调用开发者，不依赖 `$subagentCapable`）。生成规则：
   - `name` 按模块 ID 定为 `<moduleId>-developer`（如模块 ID 为 `frontend` 即 `frontend-developer`）；
   - 正文中的 `{{moduleId}}` 按模块替换为对应模块 ID（如 `frontend` / `backend`）；
-  - `required-skills` 保持置空：`task-driven-dev`（单副本）与 `dev-thinking-frontend` / `dev-thinking-backend`（按模块类型两变体）均安装在项目管理空间，技能经 Agent 正文的"开工前必读"清单以 `Read` 方式加载，转换时不得为其生成技能引用；
+  - `required-skills` 保持置空：`task-driven-dev`（单副本）与 `dev-thinking`（通用原则 `SKILL.md` + 按模块类型取用的 `frontend.md` / `backend.md` 端文件）均安装在项目管理空间，技能经 Agent 正文的"开工前必读"清单以 `Read` 方式加载，转换时不得为其生成技能引用；
   - 其余转换原则与上面 Agent 生成一致。
 - **工具权限设置**：在项目管理目录中按 `$aiTool` 的权限机制配置（开发者 Agent 统一安装于项目管理空间后，手动模式同样需要跨仓读写，故无条件配置）：
   - 将 `$modules` 中每个模块的 `path` 绝对路径加入**附加目录授权**——仅授予文件读写权、不加载附加目录的任何配置（如 Claude Code 的 `permissions.additionalDirectories`）；
