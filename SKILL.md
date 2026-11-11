@@ -1,7 +1,7 @@
 ---
 name: ai-fullstack-dev
 description: 创建一个AI全栈开发项目
-version: 2.3.0
+version: 2.4.0
 ---
 
 按下面的流程创建：
@@ -35,7 +35,7 @@ version: 2.3.0
 
 - 通过交互式提问（支持自由输入）询问用户在新项目中使用的 AI 编码工具。记为 `$aiTool`。
 - 该选择决定后续 Agent 文件的生成格式、rules 与 skills 的存放位置，以及 Agent 如何引用 skills。
-- 同一次交互式提问中追加确认：`$aiTool` 是否具备**子代理派发能力**（能否在主对话中以子代理方式调用已安装的 Agent 定义并获取其结果，如 Claude Code 的 sub-agent 机制）。记为 `$subagentCapable`：已知具备的工具（如 Claude Code）默认为 true 并向用户说明；无法判断时询问用户；不具备则记为 false。
+- 同一次交互式提问中追加确认：`$aiTool` 是否具备**子代理派发能力**（能否在主对话内以子代理机制直接调用已安装的 Agent 定义并获取其结果与完成通知——前台派发阻塞等待返回、后台派发完成即自动通知，无需另起独立 CLI 进程，如 Claude Code 的 Agent 工具）。记为 `$subagentCapable`：已知具备的工具（如 Claude Code）默认为 true 并向用户说明；无法判断时询问用户；不具备则记为 false。
 - `$subagentCapable` 为 true 时，步骤 5 会额外生成项目经理 Agent；为 false 时仅跳过该项。开发者 Agent 与跨仓权限配置不依赖该开关（手动模式同样需要），各 Agent 的手动调用模式不受影响。
 - 请用户提供所用工具的 Agent / rules / skills 配置规范（目录约定、文件格式、引用方式），按该规范生成；如用户无法提供规范但清楚工具名称，按该工具公开的通用约定类比生成；如用户均不清楚，生成一份通用的 Agent 定义文件（保留 `name`、`description`、`required-skills` 与系统提示正文），并明确告知用户需按所用工具自行适配。
 
