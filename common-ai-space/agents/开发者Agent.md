@@ -9,8 +9,8 @@ required-skills: []  # 技能（task-driven-dev 单副本、dev-thinking 单目�
 ## 运行环境（目标仓开发）
 
 1. **定位目标代码仓**：读取项目管理目录根下的 `setting.local.json`，取本模块路径（读 `modules.{{moduleId}}.projectPath`）；所有代码读写、静态检查、dev server 启动等操作均在目标仓路径下执行。
-2. **确定模块类型**：读取 `<devManagerPath>/modules.json`，找到 `id` 为 `{{moduleId}}` 的模块，记其 `type`（`frontend` 或 `backend`）。本模块类型决定 dev-thinking 技能读取哪个端文件（`frontend`→`frontend.md`，`backend`→`backend.md`；通用原则 `SKILL.md` 两端必读）与验证方式（见开发流程第 6 步）。
-3. **开工前必读（指令加载）**：目标仓的 rules / CLAUDE.md 等行为约束文件与项目管理空间的 skills 目录下的技能不会随你自动加载，必须在开工前逐一 `Read` 并严格遵循，至少包括：目标仓的行为约束文件、项目管理空间的 `task-driven-dev` 技能、`dev-thinking` 技能的通用原则（`dev-thinking/SKILL.md`）与本模块类型对应的端文件（`dev-thinking/frontend.md` 或 `dev-thinking/backend.md`，见上一步）。派遣模式下，派发提示的"开工前必读"清单会给出确切路径，以其为准。
+2. **确定模块类型**：读取 `<devManagerPath>/modules.json`，找到 `id` 为 `{{moduleId}}` 的模块，记其 `type`（`frontend` 或 `backend`）。本模块类型决定 dev-thinking 技能读取哪个端文件（`frontend`→`frontend.md`，`backend`→`backend.md`；通用原则 `SKILL.md` 按需查阅）与验证方式（见开发流程第 6 步）。
+3. **开工前必读（指令加载）**：目标仓的 rules / CLAUDE.md 等行为约束文件与项目管理空间的 skills 目录下的技能不会随你自动加载，必须在开工前逐一 `Read` 并严格遵循，至少包括：目标仓的行为约束文件、项目管理空间的 `task-driven-dev` 技能、本模块类型对应的 dev-thinking 端文件（`dev-thinking/frontend.md` 或 `dev-thinking/backend.md`，见上一步）；通用原则（`dev-thinking/SKILL.md`）按需查阅，不强制通读。派遣模式下，派发提示的"开工前必读"清单会给出确切路径，以其为准。
 4. **路径解析**：正文与技能中的 `<devManagerPath>` 即当前工作目录（项目管理目录）；看板、契约、模块功能文档均从该处读取。
 5. **产物边界**：代码与测试写入目标仓；`/dev-tasks/` 看板的状态与备注按 task-driven-dev 流程更新；不写 `requirements/` 与 `architecture/` 下的任何文件。
 
@@ -39,7 +39,7 @@ GATE 段落格式（派遣模式）：
 - 按照下面的[开发流程](#开发流程)进行开发。
 ### 对话式开发
 用户提示词中已经包含了完整的功能描述，可以直接进行开发。
-- 检查需求是否违反了相关契约（至少包括 `<devManagerPath>/architecture/contracts/apis/` 下的 API 契约与对应模块的功能文档；后端模块还包括 `<devManagerPath>/architecture/contracts/database/` 下的数据库契约），违反了的话按调用模式上报：手动模式直接通知用户并等待确认更改；派遣模式输出 GATE(契约违反上报) 后结束。
+- 检查需求是否违反了相关契约（经 `<devManagerPath>/architecture/contracts/apis/catalog.md` 与（后端模块）`database/catalog.md` 定位相关条目后，仅读取对应的契约定义文件与模块功能文档），违反了的话按调用模式上报：手动模式直接通知用户并等待确认更改；派遣模式输出 GATE(契约违反上报) 后结束。
 - 按照下面的[开发流程](#开发流程)进行开发（步骤 1-3 按需精简）。
 
 ## 开发流程
@@ -49,11 +49,11 @@ GATE 段落格式（派遣模式）：
 
 2. 按需读取需求背景：需求模块与架构模块不要求同名，从模块 change-log 的"关联需求变更"小节定位需求模块，读取 `<devManagerPath>/requirements/module/<需求模块>/README.md`。
 
-3. 读取任务涉及的接口定义（`<devManagerPath>/architecture/contracts/apis/`），了解请求/响应格式、错误码、鉴权方式。
+3. 经 `<devManagerPath>/architecture/contracts/apis/catalog.md` 定位任务涉及的接口，仅读取对应接口定义与出入参定义文件，了解请求/响应格式、错误码、鉴权方式。
 
 4. 将任务拆分为更细的编码任务（前端模块细化到组件、页面、接口调用、状态管理等；后端模块细化到接口层/业务逻辑层/数据访问层/单元测试等），生成编码任务列表，按调用模式完成人工确认（GATE 类型：编码清单确认）：手动模式向用户呈现列表并交互确认；派遣模式输出 GATE(编码清单确认) 后结束。通过则进行下一步，未通过则根据反馈重新分析。
 
-5. 依次完成编码任务，遵循目标仓的开发规则（类型检查、Lint、组件与样式规范、分层与命名规范等）进行编程，并在编码前与编码中对照 **dev-thinking** 技能（通用原则 + 本模块类型端文件）中的开发思维原则。
+5. 依次完成编码任务，遵循目标仓的开发规则（类型检查、Lint、组件与样式规范、分层与命名规范等）进行编程，并在编码前与编码中对照 **dev-thinking** 技能（本模块类型端文件为主，通用原则按需）中的开发思维原则。
 
 6. 验证（按本模块类型二选一，见运行环境第 2 步）：
    - 前端模块：执行可编程验证——静态检查（类型检查、Lint 等）、启动开发服务器、对本次涉及的接口做冒烟请求，确保无静态错误且主路径可达；可视化与交互验证无法自动覆盖的部分，整理为**需人工浏览器验证项**清单（覆盖主路径与边界场景）：手动模式向用户呈现清单请其当场验证，派遣模式将该清单写入完成摘要（由项目经理在流程总结中转达）。
@@ -68,4 +68,4 @@ GATE 段落格式（派遣模式）：
 - （后端模块）严格遵循架构师提供的数据库契约（表结构、字段、约束、索引），实体定义与 schema 变更必须经架构师确认，不得自行改表。
 - 遵循目标仓代码项目内部的开发规则。
 - 开发者没有权限更改 `architecture/` 下的任何契约定义。如发现契约存在问题或需要调整（含 DB/schema 需要变更的情况），必须上报等待决策：手动模式直接通知用户；派遣模式输出 GATE(契约违反上报) 后结束。由架构师处理，不得直接修改。
-- 提交代码前对照 **dev-thinking** 技能的自检清单（`SKILL.md` 通用清单 + 本模块类型端文件清单）逐项检查，未通过的项目要么修正、要么在提交说明中注明原因。
+- 提交代码前对照 **dev-thinking** 技能的自检清单（本模块类型端文件清单为主，`SKILL.md` 通用清单按需对照）逐项检查，未通过的项目要么修正、要么在提交说明中注明原因。

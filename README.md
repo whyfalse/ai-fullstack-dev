@@ -49,8 +49,7 @@
 │           ├── <表名>.json      # 表/集合 schema 中立描述
 │           └── change-log/      # 数据库变更日志（按表名分文件）
 ├── dev-tasks/                   # 开发任务拆分目录
-│   ├── <moduleId>.md            # 各代码模块的任务看板
-│   └── pipeline-log.md          # 流水线运行日志（项目经理追加式写入）
+│   └── <moduleId>.md            # 各代码模块的任务看板
 ├── tester/                      # 测试者工作目录
 │   ├── config.md                # 全局测试配置
 │   ├── config.local.md          # 私人测试配置

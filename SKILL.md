@@ -1,7 +1,7 @@
 ---
 name: ai-fullstack-dev
 description: 创建一个AI全栈开发项目
-version: 2.4.0
+version: 2.6.0
 ---
 
 按下面的流程创建：
@@ -41,7 +41,7 @@ version: 2.4.0
 
 ## 3. 创建项目管理目录骨架
 
-- 读取 `./dev-manager-ai-space/rules/directory-structure.md`，按照其中的目录结构创建目录和文件。注意：只创建确定的目录和文件，不要创建多余的目录和文件；**其中的 `setting.local.json` 跳过，由步骤 4 写入**；**`modules.json` 跳过，由步骤 4 写入**；**`framework.json` 跳过，由步骤 7 写入**；**`tester/config.md` 跳过，由架构师首次架构设计时产出（参照项目 `templates/tester-config-template.md`）**；**`tester/config.local.md` 跳过，由开发者个人按需创建**；**`dev-tasks/pipeline-log.md` 跳过，由项目经理 Agent 首次记录时按需创建**；`tester/reports/` 创建空目录。
+- 读取 `./dev-manager-ai-space/rules/directory-structure.md`，按照其中的目录结构创建目录和文件。注意：只创建确定的目录和文件，不要创建多余的目录和文件；**其中的 `setting.local.json` 跳过，由步骤 4 写入**；**`modules.json` 跳过，由步骤 4 写入**；**`framework.json` 跳过，由步骤 7 写入**；**`tester/config.md` 跳过，由架构师首次架构设计时产出（参照项目 `templates/tester-config-template.md`）**；**`tester/config.local.md` 跳过，由开发者个人按需创建**；`tester/reports/` 创建空目录。
 - 将 `./templates/` 下的文件复制到项目的 `templates/` 下。
 - 将 `./init-templates/项目README模板.md` 复制到项目根目录并改名为 `README.md`；初始化时保留模板中的占位文本（如"这里是项目概述"），由用户后续填写。
 
